@@ -4,6 +4,9 @@ It displays country flags alongside each currency for better identification and 
 Additionally, users can seamlessly navigate to the conversion page after selecting their desired currencies, making the experience intuitive and efficient.
 
 currency-converter/
+
 ├── index.html         # Main HTML file for selecting currencies
+
 ├── conversion.html    # Placeholder for the conversion functionality (to be implemented)
+
 └── README.md          # Documentation file
