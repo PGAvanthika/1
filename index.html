@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Currency</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fullscreen layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0; /* Light background color */
+        }
+
+        .currency-selection {
+            width: 90vw; /* Almost full width */
+            height: 90vh; /* Almost full height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden; /* Ensure content doesn't overflow */
+            max-width: 1000px; /* Optional: To limit the max width */
+            max-height: 800px; /* Optional: To limit the max height */
+            border-radius: 10px; /* Optional: Rounded corners for a cleaner look */
+        }
+
+        .selection-content {
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            padding-bottom: 20px;
+        }
+
+        .currency-list {
+            max-width: 100%;
+            max-height: calc(90vh - 100px); /* Adjust based on header and button space */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column; /* Ensure items stack vertically */
+            align-items: center;
+            margin: 0 auto; /* Center the list */
+        }
+
+        .currency-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .currency-item:hover {
+            background-color: #e0e0e0; /* Slightly darker on hover */
+        }
+
+        .flag {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="currency-selection">
+        <div class="selection-content">
+            <h1>Select Currency</h1>
+
+            <div class="selection-header">
+                <h2>Select 'From' Currency</h2>
+            </div>
+
+            <div class="currency-list" id="currencyList">
+                <!-- United States -->
+                <div class="currency-item" onclick="selectCurrency('USD', 'https://flagcdn.com/us.svg')">
+                    <img src="https://flagcdn.com/us.svg" alt="USD Flag" class="flag">
+                    <p>USD - United States</p>
+                </div>
+
+                <!-- Euro -->
+                <div class="currency-item" onclick="selectCurrency('EUR', 'https://flagcdn.com/eu.svg')">
+                    <img src="https://flagcdn.com/eu.svg" alt="EUR Flag" class="flag">
+                    <p>EUR - Euro</p>
+                </div>
+
+                <!-- Japan -->
+                <div class="currency-item" onclick="selectCurrency('JPY', 'https://flagcdn.com/jp.svg')">
+                    <img src="https://flagcdn.com/jp.svg" alt="JPY Flag" class="flag">
+                    <p>JPY - Japan</p>
+                </div>
+
+                <!-- India -->
+                <div class="currency-item" onclick="selectCurrency('INR', 'https://flagcdn.com/in.svg')">
+                    <img src="https://flagcdn.com/in.svg" alt="INR Flag" class="flag">
+                    <p>INR - India</p>
+                </div>
+
+                <!-- Russia -->
+                <div class="currency-item" onclick="selectCurrency('RUB', 'https://flagcdn.com/ru.svg')">
+                    <img src="https://flagcdn.com/ru.svg" alt="RUB Flag" class="flag">
+                    <p>RUB - Russia</p>
+                </div>
+
+                <!-- Germany -->
+                <div class="currency-item" onclick="selectCurrency('EUR', 'https://flagcdn.com/de.svg')">
+                    <img src="https://flagcdn.com/de.svg" alt="Germany Flag" class="flag">
+                    <p>EUR - Germany</p>
+                </div>
+            </div>
+
+            <button onclick="goToNextPage()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let fromCurrency = '';
+        let fromFlag = '';
+        let toCurrency = '';
+        let toFlag = '';
+
+        function selectCurrency(currency, flag) {
+            const header = document.querySelector('.selection-header h2');
+            
+            if (!fromCurrency) {
+                fromCurrency = currency;
+                fromFlag = flag;
+                header.innerText = "Select 'To' Currency"; // Change the heading for 'To' currency selection
+            } else if (!toCurrency) {
+                toCurrency = currency;
+                toFlag = flag;
+            }
+
+            // Highlight selected items visually (optional)
+            if (fromCurrency && toCurrency) {
+                header.innerText = "Both currencies selected. Click 'Next' to proceed.";
+            }
+        }
+
+        function goToNextPage() {
+            if (fromCurrency && toCurrency) {
+                window.location.href = `conversion.html?from=${fromCurrency}&fromFlag=${fromFlag}&to=${toCurrency}&toFlag=${toFlag}`;
+            } else {
+                const header = document.querySelector('.selection-header h2');
+                header.innerText = 'Please select both currencies.';
+            }
+        }
+    </script>
+</body>
+</html>
