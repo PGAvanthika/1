@@ -5,8 +5,8 @@ Additionally, users can seamlessly navigate to the conversion page after selecti
 
 currency-converter/
 
-├── index.html         # Main HTML file for selecting currencies
+├── index.html           # Main HTML file for selecting currencies
 
-├── conversion.html    # Placeholder for the conversion functionality (to be implemented)
+├── conversion.html      # Placeholder for the conversion functionality (to be implemented)
 
-└── README.md          # Documentation file
+└── README.md            # Documentation file
